@@ -75,8 +75,6 @@ To run this project, you will need to download the files directly from github as
 Distributed under the no License. Free for anyone to use. Especially made for students by the student to learn.
 
 
-<!-- Contact -->
-## :handshake: Contact
 
 
 

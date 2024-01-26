@@ -78,13 +78,8 @@ Distributed under the no License. Free for anyone to use. Especially made for st
 <!-- Contact -->
 ## :handshake: Contact
 
-Niraj Shrestha - [@linkedin_handle](https://linkedin.com/in/NirajXtha) - nishrestha776@gmail.com
-
-Project Link: [https://github.com/NirajXtha/Musical_Instrument_Portal_Project](https://github.com/NirajXtha/Musical_Instrument_Portal_Project)
 
 
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
 
 
- - [W3 school](https://www.w3schools.com/)
+

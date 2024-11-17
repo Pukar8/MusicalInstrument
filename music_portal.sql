@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 19, 2023 at 08:32 AM
--- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- Host: 127.0.0.1:3307
+-- Generation Time: Nov 17, 2024 at 07:54 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,16 +27,15 @@ SET time_zone = "+00:00";
 -- Table structure for table `cart`
 --
 
-DROP TABLE IF EXISTS `cart`;
-CREATE TABLE IF NOT EXISTS `cart` (
-  `id` int NOT NULL,
-  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `pid` bigint NOT NULL,
-  `qty` int NOT NULL,
-  `price` bigint NOT NULL,
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `pid` bigint(20) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `price` bigint(20) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
-  `status` varchar(70) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending'
+  `status` varchar(70) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -60,22 +59,20 @@ INSERT INTO `cart` (`id`, `username`, `pid`, `qty`, `price`, `date`, `time`, `st
 -- Table structure for table `c_order`
 --
 
-DROP TABLE IF EXISTS `c_order`;
-CREATE TABLE IF NOT EXISTS `c_order` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(70) COLLATE utf8mb3_unicode_ci NOT NULL,
+CREATE TABLE `c_order` (
+  `id` int(11) NOT NULL,
+  `username` varchar(70) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
-  `ward` int NOT NULL,
-  `municipality` varchar(70) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `district` varchar(70) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `tole` varchar(70) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `price` bigint NOT NULL,
-  `ph` bigint NOT NULL,
-  `payment` text COLLATE utf8mb3_unicode_ci NOT NULL,
-  `status` varchar(70) COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT 'pending',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+  `ward` int(11) NOT NULL,
+  `municipality` varchar(70) NOT NULL,
+  `district` varchar(70) NOT NULL,
+  `tole` varchar(70) NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `ph` bigint(20) NOT NULL,
+  `payment` text NOT NULL,
+  `status` varchar(70) NOT NULL DEFAULT 'pending'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `c_order`
@@ -94,13 +91,11 @@ INSERT INTO `c_order` (`id`, `username`, `date`, `time`, `ward`, `municipality`,
 -- Table structure for table `message`
 --
 
-DROP TABLE IF EXISTS `message`;
-CREATE TABLE IF NOT EXISTS `message` (
-  `msg_id` int NOT NULL AUTO_INCREMENT,
-  `msg` text COLLATE utf8mb4_general_ci,
-  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`msg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `message` (
+  `msg_id` int(11) NOT NULL,
+  `msg` text DEFAULT NULL,
+  `username` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `message`
@@ -115,23 +110,21 @@ INSERT INTO `message` (`msg_id`, `msg`, `username`) VALUES
 -- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE IF NOT EXISTS `orders` (
-  `order_id` bigint NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `pid` text COLLATE utf8mb4_general_ci NOT NULL,
-  `price` bigint NOT NULL,
-  `qty` int NOT NULL DEFAULT '1',
-  `payment` text COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
+CREATE TABLE `orders` (
+  `order_id` bigint(20) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `pid` text NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `qty` int(11) NOT NULL DEFAULT 1,
+  `payment` text NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Pending',
   `date` date NOT NULL,
-  `municipality` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `tole` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `ward` int NOT NULL,
-  `ph` int NOT NULL,
-  `district` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `municipality` varchar(70) NOT NULL,
+  `tole` varchar(70) NOT NULL,
+  `ward` int(11) NOT NULL,
+  `ph` int(11) NOT NULL,
+  `district` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
@@ -148,18 +141,16 @@ INSERT INTO `orders` (`order_id`, `username`, `pid`, `price`, `qty`, `payment`, 
 -- Table structure for table `product`
 --
 
-DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `product` (
-  `pid` bigint NOT NULL AUTO_INCREMENT,
-  `product` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `p_type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `brand` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `price` bigint NOT NULL,
-  `img_url` text COLLATE utf8mb4_general_ci NOT NULL,
-  `detail` text COLLATE utf8mb4_general_ci NOT NULL,
-  `featured` varchar(6) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Add',
-  PRIMARY KEY (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `product` (
+  `pid` bigint(20) NOT NULL,
+  `product` text NOT NULL,
+  `p_type` text NOT NULL,
+  `brand` varchar(30) NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `img_url` text NOT NULL,
+  `detail` text NOT NULL,
+  `featured` varchar(6) NOT NULL DEFAULT 'Add'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
@@ -167,14 +158,14 @@ CREATE TABLE IF NOT EXISTS `product` (
 
 INSERT INTO `product` (`pid`, `product`, `p_type`, `brand`, `price`, `img_url`, `detail`, `featured`) VALUES
 (1, 'Yamaha_slg200N', 'Guitar', 'Yamaha', 110000, 'IMG-649841770410c4.00031644.jfif', 'The Yamaha SLG200S Silent Guitar is an exceptional instrument that harmonizes the beauty of acoustic guitar tones with the convenience of a portable and silent design. Its innovative construction and cutting-edge features make it a perfect choice for musicians exploring Nepal\'s breathtaking landscapes without compromising their musical expression. The SLG200S is designed with both practice and performance in mind, making it an ideal companion for musicians in Nepal. Its unique design allows players to enjoy a traditional guitar\'s rich and authentic acoustic sound.', 'Remove'),
-(2, 'Fender Telecaster Deluxe', 'Guitar', 'Fender', 410000, 'IMG-649a9e99bb40b8.02482821.png', 'Fender’s American Professional II Telecaster Deluxe puts a new spin on the hugely popular model, with upgrades aimed at the professional player. The iconic Tele Deluxe styling remains, but it benefits from a contoured neck heel and a redesigned 3-saddle bridge, which makes it easier than ever to get a clean setup with perfect intonation. Tim Shaw V-Mod II Double Tap humbuckers provide the fat sound you would expect from a Tele Deluxe, but they pull the wool off the top end, yielding a stunning hi-fi tone.', 'Remove'),
-(3, 'Mapex Tornado TND5254TFJ – Ebony Yellow Grain', 'Drum', 'Mapex', 89000, 'IMG-64a93683018943.63353298.png', 'Tornado Series Studio Version Drum shells feature a wrap finish Drum shells are made from basswood Colour: Ebony Yellow Grain', 'Remove'),
+(2, 'Fender Telecaster Deluxe', 'Guitar', 'Fender', 410000, 'IMG-649a9e99bb40b8.02482821.png', 'Fenderâ€™s American Professional II Telecaster Deluxe puts a new spin on the hugely popular model, with upgrades aimed at the professional player. The iconic Tele Deluxe styling remains, but it benefits from a contoured neck heel and a redesigned 3-saddle bridge, which makes it easier than ever to get a clean setup with perfect intonation. Tim Shaw V-Mod II Double Tap humbuckers provide the fat sound you would expect from a Tele Deluxe, but they pull the wool off the top end, yielding a stunning hi-fi tone.', 'Remove'),
+(3, 'Mapex Tornado TND5254TFJ â€“ Ebony Yellow Grain', 'Drum', 'Mapex', 89000, 'IMG-64a93683018943.63353298.png', 'Tornado Series Studio Version Drum shells feature a wrap finish Drum shells are made from basswood Colour: Ebony Yellow Grain', 'Remove'),
 (4, 'Yamaha PSR-F52 Portable Keyboard', 'Keyboard', 'Yamaha', 19000, 'IMG-64a9388203f985.42839902.png', 'The Yamaha PSR-F52 Portable Keyboard is a versatile and compact instrument that brings joy to musicians in Nepal and beyond. With its 61 touch-sensitive keys, it offers a responsive playing experience that resonates with musicians. Featuring a variety of instrument voices, including pianos, guitars, and strings, it allows for creative exploration across various genres commonly appreciated in Nepals vibrant music scene.', 'Add'),
 (7, 'D\'Addario EJ26 Phosphor Bronze Custom Light Acoustic Strings', 'Accessories', 'DAddario', 1300, 'IMG-64dfa715572607.42372337.jpg', 'EJ26 is a custom light Phosphor Bronze set that features lighter top and bottom strings for ease of playability and balance. Since D\'Addario introduced Phosphor Bronze guitar strings in 1974, they have been synonymous with warm and well-balanced acoustic tone.', 'Add'),
 (8, 'CONCERT SIZE UKULELE LAGOON TURQUOISE - RULAGOON', 'Ukulele', 'Ortega', 16800, 'IMG-64dfa8ba133037.54227008.png', '4-String Ukulele, Right, LAGOON TURQUOISE, Concert (RULAGOON)', 'Remove'),
 (9, 'Ortega RUFIRE Concert Ukulele', 'Ukulele', 'Ortega', 16800, 'IMG-64dfa92dcaef09.58567241.jpg', '4-String Ukulele, Right, Fire Red, Concert RUFIRE', 'Add'),
 (10, 'Shure SV100X Vocal Microphone', 'Mic', 'Shure', 3900, 'IMG-64e03a5f27d4f9.81423336.jpg', 'The Shure SV100 is a handheld cardioid dynamic microphone offering a frequency response tailored for reproduction of vocals and speech in concert venues, lectures, houses of worship, karaoke, and presentations. Its dynamic element requires no power source and delivers a frequency response of 50 Hz to 15 kHz.', 'Add'),
-(12, 'Yamaha MG12XU Analog Mixer', 'Midi', 'Yamaha', 4900, 'IMG-64e03b2f8c6e99.16340491.jpg', '12-Channel Mixing Console\r\nMax. 6 Mic / 12 Line Inputs (4 mono + 4 stereo)\r\n2 GROUP Buses + 1 Stereo Bus\r\n2 AUX (incl. FX)\r\n“D-PRE” mic preamps with an inverted Darlington circuit\r\n1-Knob compressors\r\nHigh-grade effects: SPX with 24 programs\r\n24-bit / 192kHz 2in / 2out USB Audio functions\r\nWorks with the iPad (2 or later) through the Apple iPad Camera Connection Kit / Lightning to USB Camera Adapter', 'Add'),
+(12, 'Yamaha MG12XU Analog Mixer', 'Midi', 'Yamaha', 4900, 'IMG-64e03b2f8c6e99.16340491.jpg', '12-Channel Mixing Console\r\nMax. 6 Mic / 12 Line Inputs (4 mono + 4 stereo)\r\n2 GROUP Buses + 1 Stereo Bus\r\n2 AUX (incl. FX)\r\nâ€œD-PREâ€ mic preamps with an inverted Darlington circuit\r\n1-Knob compressors\r\nHigh-grade effects: SPX with 24 programs\r\n24-bit / 192kHz 2in / 2out USB Audio functions\r\nWorks with the iPad (2 or later) through the Apple iPad Camera Connection Kit / Lightning to USB Camera Adapter', 'Add'),
 (13, 'Yamaha_slg200N', 'Guitar', 'Yamaha', 1100000, 'IMG-64e078f41617c4.07148800.jpg', 'HGSDFH', 'Add');
 
 -- --------------------------------------------------------
@@ -183,14 +174,13 @@ INSERT INTO `product` (`pid`, `product`, `p_type`, `brand`, `price`, `img_url`, 
 -- Table structure for table `rent`
 --
 
-DROP TABLE IF EXISTS `rent`;
-CREATE TABLE IF NOT EXISTS `rent` (
-  `price` int NOT NULL,
-  `rid` text COLLATE utf8mb4_general_ci NOT NULL,
-  `img` text COLLATE utf8mb4_general_ci NOT NULL,
-  `detail` text COLLATE utf8mb4_general_ci NOT NULL,
-  `username` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `rp` int NOT NULL
+CREATE TABLE `rent` (
+  `price` int(11) NOT NULL,
+  `rid` text NOT NULL,
+  `img` text NOT NULL,
+  `detail` text NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `rp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -210,20 +200,19 @@ INSERT INTO `rent` (`price`, `rid`, `img`, `detail`, `username`, `rp`) VALUES
 -- Table structure for table `r_order`
 --
 
-DROP TABLE IF EXISTS `r_order`;
-CREATE TABLE IF NOT EXISTS `r_order` (
-  `username` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `rid` int NOT NULL,
+CREATE TABLE `r_order` (
+  `username` varchar(150) NOT NULL,
+  `rid` int(11) NOT NULL,
   `date` date NOT NULL,
-  `time` text COLLATE utf8mb4_general_ci NOT NULL,
-  `hrs` int NOT NULL,
-  `r_price` bigint NOT NULL,
-  `payment` text COLLATE utf8mb4_general_ci NOT NULL,
-  `district` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `municipality` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `tole` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
-  `ward` int NOT NULL,
-  `ph` bigint NOT NULL
+  `time` text NOT NULL,
+  `hrs` int(11) NOT NULL,
+  `r_price` bigint(20) NOT NULL,
+  `payment` text NOT NULL,
+  `district` varchar(50) NOT NULL,
+  `municipality` varchar(70) NOT NULL,
+  `tole` varchar(70) NOT NULL,
+  `ward` int(11) NOT NULL,
+  `ph` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -232,10 +221,9 @@ CREATE TABLE IF NOT EXISTS `r_order` (
 -- Table structure for table `sale`
 --
 
-DROP TABLE IF EXISTS `sale`;
-CREATE TABLE IF NOT EXISTS `sale` (
-  `pid` bigint DEFAULT NULL,
-  `sale_amt` bigint DEFAULT NULL
+CREATE TABLE `sale` (
+  `pid` bigint(20) DEFAULT NULL,
+  `sale_amt` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -253,13 +241,11 @@ INSERT INTO `sale` (`pid`, `sale_amt`) VALUES
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `username` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT 'user',
-  PRIMARY KEY (`username`)
+CREATE TABLE `users` (
+  `username` varchar(30) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `user_type` varchar(20) DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -267,10 +253,72 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `email`, `user_type`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3', 'shresthaniraj633@gmail.com', 'admin'),
-('pratik', '0cb2b62754dfd12b6ed0161d4b447df7', 'nishrestha76@gmail.com', 'user'),
-('user', 'ee11cbb19052e40b07aac0ca060c23ee', 'shresthaniraj633@gmail.com', 'user'),
+('admin', '21232f297a57a5a743894a0e4a801fc3', 'pukarpradhn78@gmail.com', 'admin'),
+('pratik', '0cb2b62754dfd12b6ed0161d4b447df7', 'pratikshrestha76@gmail.com', 'user'),
+('user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user633@gmail.com', 'user'),
 ('user1', 'ee11cbb19052e40b07aac0ca060c23ee', 'user@gmail.com', 'user');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `c_order`
+--
+ALTER TABLE `c_order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`msg_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `c_order`
+--
+ALTER TABLE `c_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

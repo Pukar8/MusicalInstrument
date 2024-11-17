@@ -28,8 +28,8 @@
         <div class="pay-body">
             <div class="pay">
                 <h2>Payment Method</h2>
-                <label for="Esewa"><h3>Esewa number: +977 9841902307</h3></label>
-                <label for="Esewa"><h3>Esewa Name: Niraj Shrestha</h3></label>
+                <label for="Esewa"><h3>Esewa number: +977 9869150253</h3></label>
+                <label for="Esewa"><h3>Esewa Name: Pukar Pradhan</h3></label>
                 <?php
                     $sql = mysqli_query($conn,"SELECT * FROM product WHERE pid = $id");
                     $check = mysqli_query($conn, "SELECT * FROM sale WHERE pid = $id");

@@ -100,7 +100,7 @@
             <th colspan="2">Action</th>
         </tr>
         <?php
-            $sql = mysqli_query($conn,"SELECT * FROM `rent` join r_order on rent.username = r_order.username WHERE status = 'pending'");
+            $sql = mysqli_query($conn,"SELECT * FROM `rent` join orders on rent.username = orders.username WHERE status = 'pending'");
             if($sql){
                 while($row = mysqli_fetch_assoc($sql)){ 
                     $id = $row['id'];?>

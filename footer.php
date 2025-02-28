@@ -34,7 +34,7 @@
 </div>
 
 <div class="social">
-        <p>© Copyright by Niraj Shrestha</p>
+        <p>© Copyright by Pukar Pradhan</p>
         <div class="socials">
             <a href="#"><img src="images/facebook.png" alt=""></a>
             <a href="#"><img src="images/instagram.png" alt=""></a>

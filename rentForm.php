@@ -37,8 +37,8 @@
         <div class="pay-body">
             <div class="pay">
                 <h2>Payment Method</h2>
-                <h3>Esewa number: +977 9841902307</h3>
-                <h3>Esewa Name: Niraj Shrestha</h3><br>
+                <h3>Esewa number: +977 9861950253</h3>
+                <h3>Esewa Name: Pukar Pradhan</h3><br>
                 <form action="rform.php?id=<?=$id?>&price=<?=$price?>" method="POST" enctype="multipart/form-data">
                     <label for="hours">Hours:</label>
                     <input type="number" name="hour" id="hour" value="1" min="1" max="24"

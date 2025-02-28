@@ -25,7 +25,7 @@
 
 <div class="contact-us" id="contactus">
         <h3>Contact Us</h3>
-        <h4>Call Us Now: +977 9841490485</h4>
+        <h4>Call Us Now: +977 9861950253</h4>
         <form action="index.php" method="POST">
             <textarea name="message" id="" cols="60" rows="8" placeholder="Send us a message..."></textarea><br>
             <input type="submit" value="Send" name="send" class="sendbtn">
